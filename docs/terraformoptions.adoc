@@ -1,0 +1,116 @@
+= Terraform Options
+:idprefix:
+:idseparator: -
+:sectlinks:
+:sectnums:
+:toc:
+:uri-repo: https://github.com/oracle-terraform-modules/terraform-oci-logging
+
+:uri-rel-file-base: link:{uri-repo}/blob/main
+:uri-rel-tree-base: link:{uri-repo}/tree/main
+
+:uri-docs: {uri-rel-file-base}/docs
+:uri-oci-region: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm
+:uri-terraform-cidrsubnet: https://www.terraform.io/docs/configuration/functions/cidrsubnet.html
+
+
+== General OCI
+
+[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+|===
+|Parameter
+|Description
+|Values
+|Default
+
+|`compartment_id`
+|Compartment id where the logging resource will be provisioned. *Required*.
+|
+|
+
+|`tenancy_id`
+|Tenancy id . *Required only for custom logs*.
+|
+|
+
+|===
+
+== Logging
+
+[stripes=odd,cols="1d,4d,3a,3a", options=header,width="100%"] 
+|===
+|Parameter
+|Description
+|Values
+|Default
+
+|`linux_logdef`
+|Log Definition for the custom Linux logs
+| e.g.
+[source]
+----
+ linux_logdef = {
+  #customtflog = {loggroup="customtfloggrp",dg="<dynamicgroup>",path=["/var/log/containers/*.log","/var/log/*.log"]}
+  #customtflog1 = {loggroup="customtfloggrp1",parser="SYSLOG",dg="<dynamicgroup>",path=["/opt/*.log"]}
+}
+----
+|{}
+
+|`loggroup_tags`
+|simple key-value pairs to tag the resources created specified in the form of a map
+| e.g.
+[source]
+----
+loggroup_tags = {
+  department = "finance"
+  environment = "dev"
+}
+----
+|loggroup_tags = {
+  Environment = "Dev"
+}
+
+|`log_retention_duration`
+|Duration to retain logs.
+|Allowed values are 30,60,90,120,150,180
+|30
+
+|`service_logdef`
+|Log Definition for the OCI Service logs
+| e.g.
+[source]
+----
+  service_logdef = {
+    #vcnlog = { loggroup = "vcnloggroup",  service = "flowlogs" ,resource="<subnetname>",enable=false}
+    #vcnlog2 = { loggroup = "vcnloggroup2",  service = "flowlogs" ,resource="<subnetname>"}
+    #oslog = { loggroup = "objloggroup",  service = "objectstorage" ,resource = "<bucketname>" }
+    #oslog2 = { loggroup = "objloggroup",  service = "objectstorage" ,resource = "<bucketname>" }
+    #functionlog = {loggroup = "funcloggroup",service="functions",resource = "<functionappname>"}
+    #apilog = { loggroup = "apiloggroup", service = "apigateway",resource="apigwdeploymentname"}
+    #lblog = {loggroup="lbloggroup",service="loadbalancer",resource="<lbname>"}
+    #eventlog = {loggroup="eventloggroup",service = "cloudevents",resource="<eventrulename>"}
+    #vpnlog ={loggroup="vpnloggroup",service="vpn",resource="<ipsecname>"}
+    #devopslog = {loggroup="devopsloggroup",service="devops",resource="<projectname>"}
+    #emaillog = {loggroup="emailloggroup",service="email",resource="<emaildomain>"}
+  }
+----
+|{}
+
+|`vcn_id`
+|VCN OCID
+|
+|none
+
+|`windows_logdef`
+|Log Definition for the custom windows logs
+| e.g.
+[source]
+----
+windows_logdef = {
+  #winlog = {loggroup="winloggrp",dg="<dynamicggroup>"}
+  #winlog = {loggroup="winloggrp",dg="<dynamicggroup>",channel=["Application"]}
+  }
+----
+|{}
+
+|===

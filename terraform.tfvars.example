@@ -1,0 +1,38 @@
+compartment_id = ""
+
+tenancy_id = ""
+
+#Linux customlog definition.if parser is not specified it will default to NONE.
+linux_logdef = {
+  #customtflog = {loggroup="customtfloggrp",dg="<dynamicgroup>",path=["/var/log/containers/*.log","/var/log/*.log"]}
+  #customtflog1 = {loggroup="customtfloggrp1",parser="SYSLOG",dg="<dynamicgroup>",path=["/opt/*.log"]}
+}
+
+log_retention_duration = 30
+
+loggroup_tags = {
+  "Environment" = "Dev"
+}
+
+service_logdef = {
+    #vcnlog = { loggroup = "vcnloggroup",  service = "flowlogs" ,resource="<subnetname>",enable=false}
+    #vcnlog2 = { loggroup = "vcnloggroup2",  service = "flowlogs" ,resource="<subnetname>"}
+    #oslog = { loggroup = "objloggroup",  service = "objectstorage" ,resource = "<bucketname>" }
+    #oslog2 = { loggroup = "objloggroup",  service = "objectstorage" ,resource = "<bucketname>" }
+    #functionlog = {loggroup = "funcloggroup",service="functions",resource = "<functionappname>"}
+    #apilog = { loggroup = "apiloggroup", service = "apigateway",resource="apigwdeploymentname"}
+    #lblog = {loggroup="lbloggroup",service="loadbalancer",resource="<lbname>"}
+    #eventlog = {loggroup="eventloggroup",service = "cloudevents",resource="<eventrulename>"}
+    #vpnlog ={loggroup="vpnloggroup",service="vpn",resource="<ipsecname>"}
+    #devopslog = {loggroup="devopsloggroup",service="devops",resource="<projectname>"}
+    #emaillog = {loggroup="emailloggroup",service="email",resource="<emaildomain>"}
+    
+  }
+
+vcn_id = "none"
+
+#Windows custom log definition.If channel is not specified it will default to Application.
+windows_logdef = {
+  #winlog = {loggroup="winloggrp",dg="<dynamicggroup>"}
+  #winlog = {loggroup="winloggrp",dg="<dynamicggroup>",channel=["Application"]}
+  }

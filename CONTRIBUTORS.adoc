@@ -1,0 +1,13 @@
+== GitHub userids of contributors
+
+=== Maintainers
+
+_maintainers have admin access and can merge code to main_
+
+- https://github.com/hyder[@karthicgit]
+- https://github.com/markxnelson[@markxnelson]
+
+=== CONTRIBUTORS
+
+- https://github.com/karthicgit[@karthicgit]
+- https://github.com/hyder[@hyder]

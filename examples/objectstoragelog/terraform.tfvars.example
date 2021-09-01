@@ -1,0 +1,3 @@
+bucket_name = "testbucket"
+bucket_namespace = ""
+compartment_id = ""
