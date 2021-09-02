@@ -5,8 +5,7 @@ data "oci_functions_applications" "func_apps" {
 
   #Optional
   display_name = each.value.resource
-  #id           = oci_functions_application.test_application.id
-  #state = "AVAILABLE"
+
 }
 
 

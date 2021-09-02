@@ -52,7 +52,7 @@ resource "oci_logging_log_group" "funcloggroup" {
   for_each = toset(local.funcloggroup)
 
   compartment_id = var.compartment_id
-  description    = "FunctionsLoggroup"
+  description    = "Functions Loggroup"
   display_name   = each.value
   freeform_tags  = var.loggroup_tags
 

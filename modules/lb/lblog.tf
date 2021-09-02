@@ -3,8 +3,6 @@ data "oci_load_balancer_load_balancers" "load_balancers" {
   for_each       = var.logdefinition
   compartment_id = var.compartment_id
 
-  #Optional
-  #detail       = var.load_balancer_detail
   display_name = each.value.resource
   state        = "ACTIVE"
 }

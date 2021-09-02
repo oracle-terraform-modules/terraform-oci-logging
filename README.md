@@ -57,8 +57,8 @@ Licensed under the [Universal Permissive License 1.0][license] as shown at
 [prerequisites]: https://github.com/oracle-terraform-modules/terraform-oci-logging/blob/main/docs/prerequisites.adoc
 
 [quickstart]: https://github.com/oracle-terraform-modules/terraform-oci-logging/blob/main/docs/quickstart.adoc
-[repo]: https://github.com/oracle/terraform-oci-logging
-[reuse]: https://github.com/oracle/terraform-oci-logging/examples
+[repo]: https://github.com/oracle-terraform-modules/terraform-oci-logging
+[reuse]: https://github.com/oracle-terraform-modules/terraform-oci-logging/examples
 [terraform]: https://www.terraform.io
 [terraform_oci]: https://www.terraform.io/docs/providers/oci/index.html
 [terraform_options]: https://github.com/oracle-terraform-modules/terraform-oci-logging/blob/main/docs/terraformoptions.adoc

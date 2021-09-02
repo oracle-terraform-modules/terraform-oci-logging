@@ -62,8 +62,7 @@
 [source]
 ----
 loggroup_tags = {
-  department = "finance"
-  environment = "dev"
+  "Environment" = "Dev"
 }
 ----
 |loggroup_tags = {
