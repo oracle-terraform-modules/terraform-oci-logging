@@ -1,4 +1,4 @@
-# Creating logs and loggroups for loadbalancer service 
+# Creating logs and loggroups for loadbalancer service
 
 [Terraform Variable Definition file]:https://www.terraform.io/docs/language/values/variables.html#variable-definitions-tfvars-files
 [Input Variables]:https://www.terraform.io/docs/language/values/variables.html
@@ -8,9 +8,11 @@
 [docs/terraformoptions]:https://github.com/oracle-terraform-modules/terraform-oci-logging/blob/main/docs/terraformoptions.adoc
 [Provisioning Infrastructure with Terraform]:https://www.terraform.io/docs/cli/run/index.html
 
-This example illustrates how to use `terraform-oci-logging` module to create a log and loggroup for objectstorage service
+This example illustrates how to use `terraform-oci-logging` module to create a log and loggroup for loadbalancer service
 
-It will create objectstorage bucket and enable logs for the bucket in the given compartment.
+To use this example you need an existing loadbalancer to enable logs
+
+- lbname
 
 ## Prerequisites
 
