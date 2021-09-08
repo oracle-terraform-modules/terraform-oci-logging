@@ -1,4 +1,4 @@
-# Creating logs and loggroups for loadbalancer service 
+# Creating logs and loggroups for VCN service (subnets)
 
 [Terraform Variable Definition file]:https://www.terraform.io/docs/language/values/variables.html#variable-definitions-tfvars-files
 [Input Variables]:https://www.terraform.io/docs/language/values/variables.html
@@ -10,7 +10,7 @@
 
 This example illustrates how to use `terraform-oci-logging` module to create a vcnflow log and loggroup for the subnet
 
-This example creates a vcn ,subnet named loggingsubnet and enable logs for the subnet.
+This example creates a vcn and a subnet named loggingsubnet with logs enabled (30 days retention by default).
 
 ## Prerequisites
 
