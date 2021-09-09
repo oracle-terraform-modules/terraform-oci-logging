@@ -1,8 +1,12 @@
+variable "label_prefix" {
+  default     = "none"
+  description = "A string that will be prepended to log resources."
+  type        = string
+}
 variable "linux_logdef" {
   type        = map(any)
   description = "Custom Linux log definition"
 }
-
 variable "windows_logdef" {
   type        = map(any)
   description = "Custom Windows Log Definition"

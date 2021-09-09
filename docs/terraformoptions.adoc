@@ -44,6 +44,11 @@
 |Values
 |Default
 
+|`label_prefix`
+|A string that will be prepended to log resources
+|none
+|none
+
 |`linux_logdef`
 |Log Definition for the custom Linux logs
 | e.g.

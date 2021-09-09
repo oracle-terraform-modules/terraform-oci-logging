@@ -12,7 +12,7 @@ resource "oci_logging_log" "lb_access_log" {
 
   for_each = var.logdefinition
 
-  display_name = format("%s-%s", each.key, "access")
+  display_name = var.label_prefix == "none" ? format("%s%s", "access", each.key) : format("%s-%s%s", var.label_prefix, "access", each.key)
   log_group_id = var.loggroup[each.value.loggroup].id
   log_type     = "SERVICE"
   configuration {
@@ -32,7 +32,7 @@ resource "oci_logging_log" "lb_access_log" {
 resource "oci_logging_log" "lb_error_log" {
   for_each = var.logdefinition
 
-  display_name = format("%s-%s", each.key, "error")
+  display_name = var.label_prefix == "none" ? format("%s%s", "error", each.key) : format("%s-%s%s", var.label_prefix, "error", each.key)
   log_group_id = var.loggroup[each.value.loggroup].id
   log_type     = "SERVICE"
   configuration {

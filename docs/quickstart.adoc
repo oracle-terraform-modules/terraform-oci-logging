@@ -80,6 +80,7 @@ provider "oci" {
 . Optional parameters to override:
 
 * `vcn_id`
+* `label_prefix`
 * `log_retention_duration`
 * `loggroup_tags`
 

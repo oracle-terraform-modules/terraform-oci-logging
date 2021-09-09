@@ -172,7 +172,7 @@ resource "oci_logging_log" "linux_log" {
 
   for_each = local.logdef
 
-  display_name       = each.key
+  display_name       = var.label_prefix == "none" ? each.key : format("%s-%s", var.label_prefix, each.key)
   log_group_id       = var.linuxloggroup[each.value.loggroup].id
   log_type           = "CUSTOM"
   is_enabled         = lookup(each.value, "enable", true)
@@ -185,7 +185,7 @@ resource "oci_logging_log" "win_log" {
 
   for_each = local.winlogdef
 
-  display_name       = each.key
+  display_name       = var.label_prefix == "none" ? each.key : format("%s-%s", var.label_prefix, each.key)
   log_group_id       = var.winloggroup[each.value.loggroup].id
   log_type           = "CUSTOM"
   is_enabled         = lookup(each.value, "enable", true)

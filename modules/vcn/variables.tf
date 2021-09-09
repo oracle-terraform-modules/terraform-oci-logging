@@ -13,6 +13,11 @@ variable "compartment_id" {
   description = "Compartment ID where the resources will be created"
 }
 
+variable "label_prefix" {
+  default     = "none"
+  description = "A string that will be prepended to log resources."
+  type        = string
+}
 variable "loggroup" {
   type        = map(any)
   description = "Log Group"

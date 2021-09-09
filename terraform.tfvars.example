@@ -2,6 +2,8 @@ compartment_id = ""
 
 tenancy_id = ""
 
+label_prefix = "none"
+
 #Linux customlog definition.if parser is not specified it will default to NONE.
 linux_logdef = {
   #customtflog = {loggroup="customtfloggrp",dg="<dynamicgroup>",path=["/var/log/containers/*.log","/var/log/*.log"]}
