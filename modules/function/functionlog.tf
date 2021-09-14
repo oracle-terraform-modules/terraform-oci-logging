@@ -12,7 +12,7 @@ data "oci_functions_applications" "func_apps" {
 resource "oci_logging_log" "function_log" {
   for_each = var.logdefinition
 
-  display_name = each.key
+  display_name = var.label_prefix == "none" ? each.key : format("%s-%s", var.label_prefix, each.key)
   log_group_id = var.loggroup[each.value.loggroup].id
   log_type     = "SERVICE"
   configuration {

@@ -13,7 +13,7 @@ resource "oci_logging_log" "email_outboundaccepted_log" {
 
   for_each = var.logdefinition
 
-  display_name = format("%s-%s", each.key, "accept")
+  display_name = var.label_prefix == "none" ? format("%s%s", "accept", each.key) : format("%s-%s%s", var.label_prefix, "accept", each.key)
   log_group_id = var.loggroup[each.value.loggroup].id
   log_type     = "SERVICE"
   configuration {
@@ -33,7 +33,7 @@ resource "oci_logging_log" "email_outboundaccepted_log" {
 resource "oci_logging_log" "email_outboundrelayed_log" {
   for_each = var.logdefinition
 
-  display_name = format("%s-%s", each.key, "relay")
+  display_name = var.label_prefix == "none" ? format("%s%s", "relay", each.key) : format("%s-%s%s", var.label_prefix, "relay", each.key)
   log_group_id = var.loggroup[each.value.loggroup].id
   log_type     = "SERVICE"
   configuration {

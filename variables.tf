@@ -3,6 +3,11 @@ variable "compartment_id" {
   description = "compartment id where to create the resources"
 }
 
+variable "label_prefix" {
+  default     = "none"
+  description = "A string that will be prepended to log resources."
+  type        = string
+}
 variable "loggroup_tags" {
   type        = map(any)
   description = "Freeform Tags"

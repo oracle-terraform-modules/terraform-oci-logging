@@ -5,7 +5,7 @@ resource "oci_logging_log_group" "apigwloggroup" {
 
   compartment_id = var.compartment_id
   description    = "API Gateway Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -17,7 +17,7 @@ resource "oci_logging_log_group" "devopsloggroup" {
 
   compartment_id = var.compartment_id
   description    = "Devops Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -29,7 +29,7 @@ resource "oci_logging_log_group" "emailloggroup" {
 
   compartment_id = var.compartment_id
   description    = "Email Delivery Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -41,7 +41,7 @@ resource "oci_logging_log_group" "eventloggroup" {
 
   compartment_id = var.compartment_id
   description    = "Events Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -53,7 +53,7 @@ resource "oci_logging_log_group" "funcloggroup" {
 
   compartment_id = var.compartment_id
   description    = "Functions Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -65,7 +65,7 @@ resource "oci_logging_log_group" "lbloggroup" {
 
   compartment_id = var.compartment_id
   description    = "Loadbalancer Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -77,7 +77,7 @@ resource "oci_logging_log_group" "osloggroup" {
 
   compartment_id = var.compartment_id
   description    = "ObjectStorage Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -89,7 +89,7 @@ resource "oci_logging_log_group" "vcnloggroup" {
 
   compartment_id = var.compartment_id
   description    = "VCN flowlogs Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -101,7 +101,7 @@ resource "oci_logging_log_group" "vpnloggroup" {
 
   compartment_id = var.compartment_id
   description    = "VPN IPSEC Loggroup"
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
 }
@@ -113,7 +113,7 @@ resource "oci_logging_log_group" "linuxloggroup" {
 
 
   compartment_id = var.compartment_id
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   description    = "Custom Linux logs loggroup"
 
   freeform_tags = var.loggroup_tags
@@ -127,7 +127,7 @@ resource "oci_logging_log_group" "winloggroup" {
 
 
   compartment_id = var.compartment_id
-  display_name   = each.value
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   description    = "Custom Windows logs loggroup"
   freeform_tags  = var.loggroup_tags
 
@@ -135,6 +135,7 @@ resource "oci_logging_log_group" "winloggroup" {
 module "apigwlog" {
   source                 = "./modules/apigateway"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.apigwlogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.apigwloggroup
@@ -146,6 +147,7 @@ module "apigwlog" {
 module "customlog" {
   source                 = "./modules/custom"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   linux_logdef           = var.linux_logdef
   windows_logdef         = var.windows_logdef
   log_retention_duration = var.log_retention_duration
@@ -160,6 +162,7 @@ module "customlog" {
 module "devopslog" {
   source                 = "./modules/devops"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.devopslogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.devopsloggroup
@@ -171,6 +174,7 @@ module "devopslog" {
 module "emaillog" {
   source                 = "./modules/emaildelivery"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.emaillogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.emailloggroup
@@ -181,6 +185,7 @@ module "emaillog" {
 module "eventlog" {
   source                 = "./modules/event"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.eventlogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.eventloggroup
@@ -192,6 +197,7 @@ module "eventlog" {
 module "funclog" {
   source                 = "./modules/function"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.funclogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.funcloggroup
@@ -203,6 +209,7 @@ module "funclog" {
 module "lblog" {
   source                 = "./modules/lb"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.lblogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.lbloggroup
@@ -214,6 +221,7 @@ module "lblog" {
 module "objectstorelog" {
   source                 = "./modules/objectstorage"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.oslogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.osloggroup
@@ -225,6 +233,7 @@ module "objectstorelog" {
 module "vcnlog" {
   source                 = "./modules/vcn"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.vcnlogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.vcnloggroup
@@ -237,6 +246,7 @@ module "vcnlog" {
 module "vpnlog" {
   source                 = "./modules/vpn"
   compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
   logdefinition          = local.vpnlogdef
   log_retention_duration = var.log_retention_duration
   loggroup               = oci_logging_log_group.vpnloggroup

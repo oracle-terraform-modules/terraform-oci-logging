@@ -1,3 +1,8 @@
+variable "label_prefix" {
+  default     = "none"
+  description = "A string that will be prepended to log resources."
+  type        = string
+}
 variable "logdefinition" {
   type        = map(any)
   description = "Log definition"
