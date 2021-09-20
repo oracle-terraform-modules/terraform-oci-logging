@@ -14,8 +14,8 @@ resource "oci_logging_unified_agent_configuration" "linux_unified_agent_configur
 
   compartment_id = var.compartment_id
   is_enabled     = true
-  description    = format("%s-%s", "agentconfig", each.key)
-  display_name   = format("%s-%s", "agentconfig", each.key)
+  description    = var.label_prefix == "none" ? format("%s-%s", "agentconfig", each.key) : format("%s-%s-%s", var.label_prefix, "agentconfig", each.key)
+  display_name   = var.label_prefix == "none" ? format("%s-%s", "agentconfig", each.key) : format("%s-%s-%s", var.label_prefix, "agentconfig", each.key)
   service_configuration {
 
     configuration_type = "LOGGING"
@@ -130,8 +130,8 @@ resource "oci_logging_unified_agent_configuration" "windows_unified_agent_config
 
   compartment_id = var.compartment_id
   is_enabled     = true
-  description    = format("%s-%s", "agentconfig", each.key)
-  display_name   = format("%s-%s", "agentconfig", each.key)
+  description    = var.label_prefix == "none" ? format("%s-%s", "agentconfig", each.key) : format("%s-%s-%s", var.label_prefix, "agentconfig", each.key)
+  display_name   = var.label_prefix == "none" ? format("%s-%s", "agentconfig", each.key) : format("%s-%s-%s", var.label_prefix, "agentconfig", each.key)
   service_configuration {
 
     configuration_type = "LOGGING"
