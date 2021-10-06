@@ -24,8 +24,7 @@ variable "log_retention_duration" {
 
 variable "service_logdef" {
   type        = map(any)
-  description = "OCI Service log definition"
-  default     = {}
+  description = "OCI Service log definition.Please refer doc for example definition"
   validation {
     condition = (
       try(lookup(element(values(var.service_logdef), 0), "resource", null), {}) != null &&
