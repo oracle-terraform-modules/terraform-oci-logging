@@ -98,7 +98,7 @@ loggroup_tags = {
     #emaillog = {loggroup="emailloggroup",service="email",resource="<emaildomain>"}
   }
 ----
-|{}
+|
 
 |`vcn_id`
 |VCN OCID
