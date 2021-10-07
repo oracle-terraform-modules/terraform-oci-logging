@@ -58,6 +58,18 @@ resource "oci_logging_log_group" "funcloggroup" {
 
 }
 
+#Integration loggroup resource
+resource "oci_logging_log_group" "intloggroup" {
+
+  for_each = toset(local.intloggroup)
+
+  compartment_id = var.compartment_id
+  description    = "Integration Loggroup"
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
+  freeform_tags  = var.loggroup_tags
+
+}
+
 #Loadbalancer loggroup resource
 resource "oci_logging_log_group" "lbloggroup" {
 
@@ -206,6 +218,17 @@ module "funclog" {
 
 }
 
+module "intlog" {
+  source                 = "./modules/integration"
+  compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
+  logdefinition          = local.intlogdef
+  log_retention_duration = var.log_retention_duration
+  loggroup               = oci_logging_log_group.intloggroup
+
+  count = length(local.intlogdef) >= 1 ? 1 : 0
+
+}
 module "lblog" {
   source                 = "./modules/lb"
   compartment_id         = var.compartment_id

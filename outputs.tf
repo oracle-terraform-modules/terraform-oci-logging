@@ -65,6 +65,17 @@ output "func_loggroupid" {
   description = "Function loggroup id"
 }
 
+#Integration log and loggroup id
+output "int_logid" {
+  value       = try(module.intlog[0].int_logid, "")
+  description = "Integration logs id"
+}
+
+output "int_loggroupid" {
+  value       = try(module.intlog[0].int_loggroupid, "")
+  description = "Integration loggroup id"
+}
+
 #Loadbalancer log and loggroup id
 output "lb_accesslogid" {
   value       = try(module.lblog[0].lb_accesslogid, "")

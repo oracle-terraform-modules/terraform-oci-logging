@@ -28,6 +28,7 @@ service_logdef = {
     #vpnlog ={loggroup="vpnloggroup",service="vpn",resource="<ipsecname>"}
     #devopslog = {loggroup="devopsloggroup",service="devops",resource="<projectname>"}
     #emaillog = {loggroup="emailloggroup",service="email",resource="<emaildomain>"}
+    #intlog = {loggroup="intloggroup",service="integration",resource="<integrationinstance>"}
     
   }
 

@@ -14,6 +14,9 @@ locals {
   funclogdef   = { for k, v in var.service_logdef : k => v if v.service == "functions" }
   funcloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "functions"]
 
+  intlogdef   = { for k, v in var.service_logdef : k => v if v.service == "integration" }
+  intloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "integration"]
+
   lblogdef   = { for k, v in var.service_logdef : k => v if v.service == "loadbalancer" }
   lbloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "loadbalancer"]
 
