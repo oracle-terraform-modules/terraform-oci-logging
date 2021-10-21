@@ -6,3 +6,24 @@
 All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
+
+== 0.2.0 (Oct 18, 2021)
+
+=== Added
+* Module for Integration service logs
+
+== 0.1.0 (Sep 7, 2021)
+
+=== Added
+*  Modules for the below Oracle Cloud Infrastructure service logs
+** ApiGateway
+** Devops
+** EmailDelivery
+** Event
+** Function
+** Loadbalancer
+** ObjectaStorage
+** VCN
+** VPN IPSEC
+
+* Module for custom logs
