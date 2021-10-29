@@ -28,6 +28,9 @@ locals {
 
   vpnlogdef   = { for k, v in var.service_logdef : k => v if v.service == "vpn" }
   vpnloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "vpn"]
+
+  waflogdef   = { for k, v in var.service_logdef : k => v if v.service == "waf" }
+  wafloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "waf"]
 }
 
 locals {
