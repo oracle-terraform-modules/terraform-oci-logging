@@ -2,10 +2,8 @@ data "oci_waf_web_app_firewalls" "web_app_firewalls" {
   for_each       = var.logdefinition
   compartment_id = var.compartment_id
 
-  #Optional
   display_name = each.value.resource
   state        = ["ACTIVE"]
-  #web_app_firewall_policy_id = oci_waf_web_app_firewall_policy.test_web_app_firewall_policy.id
 }
 
 resource "oci_logging_log" "waf_log" {
