@@ -143,6 +143,18 @@ output "vpn_loggroupid" {
 
 }
 
+#WAF log and loggroup id
+output "waf_logid" {
+  value       = try(module.waflog[0].waf_logid, "")
+  description = "WAF logs id"
+}
+
+output "waf_loggroupid" {
+  value       = try(module.waflog[0].waf_loggroupid, "")
+  description = "WAF loggroup id"
+
+}
+
 #Windows custom log and loggroup id
 output "windows_logid" {
   value       = try(module.customlog[0].windowslogid, "")

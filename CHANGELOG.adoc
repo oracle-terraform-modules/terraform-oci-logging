@@ -7,6 +7,11 @@ All notable changes to this project are documented in this file.
 
 The format is based on {uri-changelog}[Keep a Changelog].
 
+== 0.3.0 - Unreleased
+
+=== Added
+* Module for Web Application Firewall service logs
+
 == 0.2.0 (Oct 18, 2021)
 
 === Added

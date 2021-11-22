@@ -118,6 +118,18 @@ resource "oci_logging_log_group" "vpnloggroup" {
 
 }
 
+#WAF loggroup resource
+resource "oci_logging_log_group" "wafloggroup" {
+
+  for_each = toset(local.wafloggroup)
+
+  compartment_id = var.compartment_id
+  description    = "WAF Loggroup"
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
+  freeform_tags  = var.loggroup_tags
+
+}
+
 #Custom Linux loggroup resource
 resource "oci_logging_log_group" "linuxloggroup" {
 
@@ -275,5 +287,17 @@ module "vpnlog" {
   loggroup               = oci_logging_log_group.vpnloggroup
 
   count = length(local.vpnlogdef) >= 1 ? 1 : 0
+
+}
+
+module "waflog" {
+  source                 = "./modules/waf"
+  compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
+  logdefinition          = local.waflogdef
+  log_retention_duration = var.log_retention_duration
+  loggroup               = oci_logging_log_group.wafloggroup
+
+  count = length(local.waflogdef) >= 1 ? 1 : 0
 
 }
