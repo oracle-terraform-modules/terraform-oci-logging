@@ -90,7 +90,7 @@ loggroup_tags = {
     #oslog = { loggroup = "objloggroup",  service = "objectstorage" ,resource = "<bucketname>" }
     #oslog2 = { loggroup = "objloggroup",  service = "objectstorage" ,resource = "<bucketname>" }
     #functionlog = {loggroup = "funcloggroup",service="functions",resource = "<functionappname>"}
-    #apilog = { loggroup = "apiloggroup", service = "apigateway",resource="apigwdeploymentname"}
+    #api_gw_deployment_log = { loggroup = "apiloggroup", service = "apigateway",resource="<apigwdeploymentname>"}
     #lblog = {loggroup="lbloggroup",service="loadbalancer",resource="<lbname>"}
     #eventlog = {loggroup="eventloggroup",service = "cloudevents",resource="<eventrulename>"}
     #vpnlog ={loggroup="vpnloggroup",service="vpn",resource="<ipsecname>"}
