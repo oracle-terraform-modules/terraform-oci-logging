@@ -101,6 +101,18 @@ output "linux_logid" {
 output "linux_loggroupid" {
   value       = try(module.customlog[0].linuxloggroupid, "")
   description = "Custom Linux loggroup id"
+
+}
+
+#MediaFlow log and loggroup id
+output "media_executionlogid" {
+  value       = try(module.mediaflowlog[0].mediaflow_executionlogid, "")
+  description = "MediaFlow execution logs id"
+}
+
+output "media_loggroupid" {
+  value       = try(module.mediaflowlog[0].media_loggroupid, "")
+  description = "MediaFlow loggroup id"
 }
 
 #ObjectStorage log  and loggroup id
@@ -135,6 +147,7 @@ output "vcn_loggroupid" {
 output "vpn_logid" {
   value       = try(module.vpnlog[0].vpn_logid, "")
   description = "VPN  IPSEC read logs id"
+
 }
 
 output "vpn_loggroupid" {
