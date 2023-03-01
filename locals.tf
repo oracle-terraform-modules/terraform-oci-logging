@@ -20,6 +20,9 @@ locals {
   lblogdef   = { for k, v in var.service_logdef : k => v if v.service == "loadbalancer" }
   lbloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "loadbalancer"]
 
+  medialogdef   = { for k, v in var.service_logdef : k => v if v.service == "mediaflow" }
+  medialoggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "mediaflow"]
+
   oslogdef   = { for k, v in var.service_logdef : k => v if v.service == "objectstorage" }
   osloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "objectstorage"]
 

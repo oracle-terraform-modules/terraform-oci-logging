@@ -82,6 +82,18 @@ resource "oci_logging_log_group" "lbloggroup" {
 
 }
 
+#Mediaflow loggroup resource
+resource "oci_logging_log_group" "medialoggroup" {
+
+  for_each = toset(local.medialoggroup)
+
+  compartment_id = var.compartment_id
+  description    = "Mediaflow Loggroup"
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
+  freeform_tags  = var.loggroup_tags
+
+}
+
 #ObjectStorage loggroup resource
 resource "oci_logging_log_group" "osloggroup" {
 
@@ -250,6 +262,18 @@ module "lblog" {
   loggroup               = oci_logging_log_group.lbloggroup
 
   count = length(local.lblogdef) >= 1 ? 1 : 0
+
+}
+
+module "mediaflowlog" {
+  source                 = "./modules/mediaflow"
+  compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
+  logdefinition          = local.medialogdef
+  log_retention_duration = var.log_retention_duration
+  loggroup               = oci_logging_log_group.medialoggroup
+
+  count = length(local.medialogdef) >= 1 ? 1 : 0
 
 }
 
