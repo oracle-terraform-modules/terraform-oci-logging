@@ -31,6 +31,7 @@ service_logdef = {
     #intlog = {loggroup="intloggroup",service="integration",resource="<integrationinstance>"}
     #waflog = {loggroup="wafloggroup",service="waf",resource="<firewallname>"}
     #medialog = {loggroup="medialoggroup",service="mediaflow",resource="<mediaworkflow>"}
+    #apmlog = {loggroup="apmloggroup",service="apm",resource="apmdomain"}
     
   }
 

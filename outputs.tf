@@ -5,13 +5,24 @@ output "apigw_execlogid" {
 }
 
 output "apigw_accesslogid" {
-  value       = try(module.apigwlog[0].apigw_loggroupid, "")
+  value       = try(module.apigwlog[0].apigw_accesslogid, "")
   description = "APIGateway access logs id"
 }
 
 output "apigw_loggroupid" {
   value       = try(module.apigwlog[0].apigw_loggroupid, "")
   description = "APIGateway loggroup id"
+}
+
+#APM log and loggroup id
+output "apm_droppeddatalogid" {
+  value       = try(module.apmlog[0].apm_logid, "")
+  description = "APM Dropped data logs id"
+}
+
+output "apm_loggroupid" {
+  value       = try(module.apmlog[0].apm_loggroupid, "")
+  description = "APM loggroup id"
 }
 
 #Devops log and loggroup id

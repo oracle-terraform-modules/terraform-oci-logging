@@ -2,6 +2,9 @@ locals {
   apigwlogdef   = { for k, v in var.service_logdef : k => v if v.service == "apigateway" }
   apigwloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "apigateway"]
 
+  apmlogdef   = { for k, v in var.service_logdef : k => v if v.service == "apm" }
+  apmloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "apm"]
+
   devopslogdef   = { for k, v in var.service_logdef : k => v if v.service == "devops" }
   devopsloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "devops"]
 
