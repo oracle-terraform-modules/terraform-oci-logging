@@ -1,3 +1,6 @@
+#Copyright (c) 2021, 2023 Oracle Corporation and/or its affiliates.
+#Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
 locals {
   logdef   = { for k, v in var.linux_logdef : k => v }
   loggroup = [for k, v in var.linux_logdef : v.loggroup]
