@@ -1,3 +1,6 @@
+#Copyright (c) 2021, 2023 Oracle Corporation and/or its affiliates.
+#Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
 #APIGateway loggroup resource
 resource "oci_logging_log_group" "apigwloggroup" {
 
@@ -5,6 +8,18 @@ resource "oci_logging_log_group" "apigwloggroup" {
 
   compartment_id = var.compartment_id
   description    = "API Gateway Loggroup"
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
+  freeform_tags  = var.loggroup_tags
+
+}
+
+#APM loggroup resource
+resource "oci_logging_log_group" "apmloggroup" {
+
+  for_each = toset(local.apmloggroup)
+
+  compartment_id = var.compartment_id
+  description    = "APM Loggroup"
   display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
   freeform_tags  = var.loggroup_tags
 
@@ -177,6 +192,18 @@ module "apigwlog" {
   loggroup               = oci_logging_log_group.apigwloggroup
 
   count = length(local.apigwlogdef) >= 1 ? 1 : 0
+
+}
+
+module "apmlog" {
+  source                 = "./modules/apm"
+  compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
+  logdefinition          = local.apmlogdef
+  log_retention_duration = var.log_retention_duration
+  loggroup               = oci_logging_log_group.apmloggroup
+
+  count = length(local.apmlogdef) >= 1 ? 1 : 0
 
 }
 

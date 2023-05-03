@@ -36,7 +36,7 @@ Learn how to [contribute][contributing].
 
 ## License
 
-Copyright (c) 2019, 2021 Oracle and/or its associates.
+Copyright (c) 2021 Oracle and/or its associates.
 
 Licensed under the [Universal Permissive License 1.0][license] as shown at
 [https://oss.oracle.com/licenses/upl][canonical_license].

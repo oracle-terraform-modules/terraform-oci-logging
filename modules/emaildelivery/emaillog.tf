@@ -1,3 +1,6 @@
+#Copyright (c) 2021, 2023 Oracle Corporation and/or its affiliates.
+#Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
 data "oci_email_email_domains" "email_domains" {
   for_each       = var.logdefinition
   compartment_id = var.compartment_id

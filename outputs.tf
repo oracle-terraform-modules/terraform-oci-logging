@@ -1,3 +1,6 @@
+#Copyright (c) 2021, 2023 Oracle Corporation and/or its affiliates.
+#Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
 #APIGW log and loggroup id
 output "apigw_execlogid" {
   value       = try(module.apigwlog[0].apigw_execlogid, "")
@@ -5,13 +8,24 @@ output "apigw_execlogid" {
 }
 
 output "apigw_accesslogid" {
-  value       = try(module.apigwlog[0].apigw_loggroupid, "")
+  value       = try(module.apigwlog[0].apigw_accesslogid, "")
   description = "APIGateway access logs id"
 }
 
 output "apigw_loggroupid" {
   value       = try(module.apigwlog[0].apigw_loggroupid, "")
   description = "APIGateway loggroup id"
+}
+
+#APM log and loggroup id
+output "apm_droppeddatalogid" {
+  value       = try(module.apmlog[0].apm_logid, "")
+  description = "APM Dropped data logs id"
+}
+
+output "apm_loggroupid" {
+  value       = try(module.apmlog[0].apm_loggroupid, "")
+  description = "APM loggroup id"
 }
 
 #Devops log and loggroup id

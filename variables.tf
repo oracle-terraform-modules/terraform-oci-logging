@@ -1,3 +1,6 @@
+#Copyright (c) 2021, 2023 Oracle Corporation and/or its affiliates.
+#Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
+
 variable "compartment_id" {
   type        = string
   description = "compartment id where to create the resources"
@@ -54,7 +57,6 @@ variable "windows_logdef" {
 
   validation {
     condition = (
-
       try(lookup(element(values(var.windows_logdef), 0), "loggroup", null), {}) != null &&
     try(lookup(element(values(var.windows_logdef), 0), "dg", null), {}) != null)
     error_message = "All the keys like loggroup and dg are needed.Refer terraform.tfvars.example for reference."
