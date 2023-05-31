@@ -118,6 +118,15 @@ resource "oci_logging_unified_agent_configuration" "linux_unified_agent_configur
         }
       }
 
+      dynamic "parser" {
+        for_each = lookup(each.value, "parser", "NONE") == "CRI" ? [1] : []
+
+        content {
+          parser_type = "CRI"
+
+        }
+      }
+
       name = each.key
     }
   }
