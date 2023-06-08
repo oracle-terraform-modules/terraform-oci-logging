@@ -6,7 +6,6 @@ data "oci_functions_applications" "func_apps" {
   for_each       = var.logdefinition
   compartment_id = var.compartment_id
 
-  #Optional
   display_name = each.value.resource
 
 }

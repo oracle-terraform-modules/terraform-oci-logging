@@ -5,7 +5,6 @@ data "oci_integration_integration_instances" "integration_instances" {
   for_each       = var.logdefinition
   compartment_id = var.compartment_id
 
-  #Optional
   display_name = each.value.resource
   state        = "ACTIVE"
 }
