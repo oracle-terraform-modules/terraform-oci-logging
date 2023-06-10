@@ -2,6 +2,10 @@
 #Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
 locals {
+
+  analyticscloudlogdef   = { for k, v in var.service_logdef : k => v if v.service == "oacnativeproduction" }
+  analyticscloudloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "oacnativeproduction"]
+
   apigwlogdef   = { for k, v in var.service_logdef : k => v if v.service == "apigateway" }
   apigwloggroup = [for k, v in var.service_logdef : v.loggroup if v.service == "apigateway"]
 

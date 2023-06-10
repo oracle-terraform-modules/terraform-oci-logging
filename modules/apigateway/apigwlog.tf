@@ -6,7 +6,6 @@ data "oci_apigateway_deployments" "apigw_deployments" {
   for_each       = var.logdefinition
   compartment_id = var.compartment_id
 
-  #Optional
   display_name = each.value.resource
   state        = "ACTIVE"
 }

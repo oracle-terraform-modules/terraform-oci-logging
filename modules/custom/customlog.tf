@@ -23,7 +23,6 @@ resource "oci_logging_unified_agent_configuration" "linux_unified_agent_configur
 
     configuration_type = "LOGGING"
 
-    #Optional
     destination {
 
       log_object_id = oci_logging_log.linux_log[each.key].id
@@ -148,7 +147,6 @@ resource "oci_logging_unified_agent_configuration" "windows_unified_agent_config
 
     configuration_type = "LOGGING"
 
-    #Optional
     destination {
 
       log_object_id = oci_logging_log.win_log[each.key].id
@@ -158,21 +156,15 @@ resource "oci_logging_unified_agent_configuration" "windows_unified_agent_config
 
       source_type = "WINDOWS_EVENT_LOG"
 
-      #Optional
+
       channels = lookup(each.value, "channel", ["Application"])
       name     = each.key
     }
 
   }
-  #Optional
-  #   defined_tags = {
-  #     "${oci_identity_tag_namespace.tag-namespace1.name}.${oci_identity_tag.tag1.name}" = var.log_group_defined_tags_value
-  #   }
 
-  #   freeform_tags = var.unified_agent_configuration_freeform_tags
   group_association {
 
-    #Optional
     group_list = [data.oci_identity_dynamic_groups.win_dynamic_groups[each.key].dynamic_groups.0.id]
   }
 
@@ -210,7 +202,6 @@ data "oci_identity_dynamic_groups" "linux_dynamic_groups" {
   for_each       = local.logdef
   compartment_id = var.tenancy_id
 
-  #Optional
   name  = each.value.dg
   state = "ACTIVE"
 }
@@ -220,7 +211,6 @@ data "oci_identity_dynamic_groups" "win_dynamic_groups" {
   for_each       = local.winlogdef
   compartment_id = var.tenancy_id
 
-  #Optional
   name  = each.value.dg
   state = "ACTIVE"
 }

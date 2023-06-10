@@ -5,8 +5,6 @@ data "oci_email_email_domains" "email_domains" {
   for_each       = var.logdefinition
   compartment_id = var.compartment_id
 
-  #Optional
-  #id    = var.email_domain_id
   name  = each.value.resource
   state = "ACTIVE"
 }

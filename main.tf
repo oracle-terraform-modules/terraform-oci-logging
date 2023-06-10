@@ -1,6 +1,18 @@
 #Copyright (c) 2021, 2023 Oracle Corporation and/or its affiliates.
 #Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl
 
+#Analytics Cloud loggroup resource
+resource "oci_logging_log_group" "analyticscloudloggroup" {
+
+  for_each = toset(local.analyticscloudloggroup)
+
+  compartment_id = var.compartment_id
+  description    = "Oracle Analytics Cloud Loggroup"
+  display_name   = var.label_prefix == "none" ? each.value : format("%s-%s", var.label_prefix, each.value)
+  freeform_tags  = var.loggroup_tags
+
+}
+
 #APIGateway loggroup resource
 resource "oci_logging_log_group" "apigwloggroup" {
 
@@ -301,6 +313,18 @@ module "mediaflowlog" {
   loggroup               = oci_logging_log_group.medialoggroup
 
   count = length(local.medialogdef) >= 1 ? 1 : 0
+
+}
+
+module "analyticscloudlog" {
+  source                 = "./modules/analyticscloud"
+  compartment_id         = var.compartment_id
+  label_prefix           = var.label_prefix
+  logdefinition          = local.analyticscloudlogdef
+  log_retention_duration = var.log_retention_duration
+  loggroup               = oci_logging_log_group.analyticscloudloggroup
+
+  count = length(local.analyticscloudlogdef) >= 1 ? 1 : 0
 
 }
 
